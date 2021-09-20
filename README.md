@@ -106,6 +106,7 @@ And in `package.json` :
 }
 ```
 
+> In this example `__globalRename` can be an array of renamer functions.
 
 ### Fail
 
@@ -138,34 +139,29 @@ Here are some examples of functional renamers :
 `parcel-rename.js` :
 ```javascript
 const assetExtensions = {
-    // https://developer.mozilla.org/fr/docs/orphaned/Web/HTML/Preloading_content
-    audio: ['wav', 'mp3', 'ogg', 'aac', 'flac'],
-    document: ['html', 'htm'],
-    //embed
-    //fetch
-    font: ['woff', 'woff2', 'ttf', 'otf', 'eot'],
-    image: ['jpg', 'jpeg', 'gif', 'png', 'apng', 'svg', 'avif', 'webp', 'ico', 'bmp'],
-    //object
-    script: ['js'],
-    style: ['css'],
-    //track
-    //worker
-    video: ['mp4', 'webm', 'flv', 'avi', 'mov', 'mkv', 'ogv'],
+  // https://developer.mozilla.org/fr/docs/orphaned/Web/HTML/Preloading_content
+  audio: ['wav', 'mp3', 'ogg', 'aac', 'flac'],
+  document: ['html', 'htm'],
+  font: ['woff', 'woff2', 'ttf', 'otf', 'eot'],
+  image: ['jpg', 'jpeg', 'gif', 'png', 'apng', 'svg', 'avif', 'webp', 'ico', 'bmp'],
+  script: ['js'],
+  style: ['css'],
+  video: ['mp4', 'webm', 'flv', 'avi', 'mov', 'mkv', 'ogv'],
 }
 
 /**
  * All assets, but html documents, will be in put inside directory parameter.
  */
 function createAllAssetsInDirectoryRenamer ( directory = 'assets' ) {
-	return function allAssetsInDirectoryRenamer ( filePath, fileName, bundle, bundleGraph, appOptions ) {
-		let name = ''
-		Object.keys( SolidNamerPlugin.assetExtensions ).map( assetType => {
-			if ( assetType == 'document' ) return;
-			if ( SolidNamerPlugin.assetExtensions[assetType].includes( bundle.type ) )
-				name = directory
-		})
-		return path.join(name, fileName);
-	}
+  return function allAssetsInDirectoryRenamer ( filePath, fileName, bundle, bundleGraph, appOptions ) {
+    let name = ''
+    Object.keys( SolidNamerPlugin.assetExtensions ).map( assetType => {
+      if ( assetType == 'document' ) return;
+      if ( SolidNamerPlugin.assetExtensions[assetType].includes( bundle.type ) )
+        name = directory
+    })
+    return path.join(name, fileName);
+  }
 }
 
 /**
@@ -173,15 +169,15 @@ function createAllAssetsInDirectoryRenamer ( directory = 'assets' ) {
  * Ex : audio/track.mp3, video/help.mp4, images/flower.jpg ...
  */
 function createAssetsByTypeRenamer () {
-	return function assetsInDirectoryByTypeRenamer ( filePath, fileName, bundle, bundleGraph, appOptions ) {
-		let name = ''
-		Object.keys( SolidNamerPlugin.assetExtensions ).map( assetType => {
-			if ( assetType == 'document' ) return;
-			if ( SolidNamerPlugin.assetExtensions[assetType].includes( bundle.type ) )
-				name += assetType + 's'
-		})
-		return path.join(name, fileName);
-	}
+  return function assetsInDirectoryByTypeRenamer ( filePath, fileName, bundle, bundleGraph, appOptions ) {
+    let name = ''
+    Object.keys( SolidNamerPlugin.assetExtensions ).map( assetType => {
+      if ( assetType == 'document' ) return;
+      if ( SolidNamerPlugin.assetExtensions[assetType].includes( bundle.type ) )
+        name += assetType + 's'
+    })
+    return path.join(name, fileName);
+  }
 }
 
 module.exports = {
@@ -193,12 +189,12 @@ module.exports = {
 `package.json` :
 ```json5
 {
-	"parcel-namer-functional" : [
-		{
-			"type" : "require",
-			"file" : "parcel-rename.js",
-			"function" : "allAssetsInStaticDirectory"
-		}
-	]
+  "parcel-namer-functional": [
+    {
+      "type": "require",
+      "file": "parcel-rename.js",
+      "function": "allAssetsInStaticDirectory"
+    }
+  ]
 }
 ```

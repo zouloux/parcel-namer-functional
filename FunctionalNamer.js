@@ -12,9 +12,9 @@ const _packageConfigKey = 'parcel-namer-functional'
 
 // ----------------------------------------------------------------------------- HELPERS
 
-function halt ( message, code =1 ) {
+function halt ( message, code = 1 ) {
 	console.error(`${_packageConfigKey} - ${message}`)
-	process.exit(code);
+	code > 0 && process.exit(code);
 }
 
 const basenameWithoutExtension = f => path.basename(f, path.extname(f))
@@ -50,8 +50,16 @@ exports.default = new Plugin.Namer({
 	 * Init config
 	 */
 	async loadConfig ({ options }) {
-		const packageJson = fs.readFileSync( path.join(options.projectRoot, 'package.json') ).toString();
-		const packageData = JSON.parse(packageJson);
+		const packagePath = path.join(options.projectRoot, 'package.json');
+		const packageJson = fs.readFileSync( packagePath ).toString();
+		let packageData;
+		try {
+			packageData = JSON.parse( packageJson );
+		}
+		catch (e) {
+			console.error(e)
+			halt(`Unable to parse ${packagePath}`, 0)
+		}
 		if ( _packageConfigKey in packageData )
 			_config = [
 				..._config,

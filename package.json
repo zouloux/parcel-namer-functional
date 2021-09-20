@@ -1,0 +1,26 @@
+{
+	"name": "parcel-namer-functional",
+	"version": "0.1.0",
+	"license": "MIT",
+	"author": "Alexis Bouhet",
+	"description": "A Parcel namer plugin with a functional way to give name to generated files.",
+	"publishConfig": {
+		"access": "public"
+	},
+	"bugs": {
+		"url": "https://github.com/zouloux/parcel-namer-functional/issues"
+	},
+	"homepage": "https://github.com/zouloux/parcel-namer-functional",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/zouloux/parcel-namer-functional.git"
+	},
+	"main": "./FunctionalNamer.js",
+	"engines": {
+		"node": ">= 12.0.0",
+		"parcel": "^2.0.0-beta.1"
+	},
+	"dependencies": {
+		"@parcel/plugin": "2.0.0-rc.0"
+	}
+}

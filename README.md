@@ -1,9 +1,10 @@
 # Parcel Namer Functional
 A Parcel namer plugin with a functional way to give name to generated files.
+No crazy regex to type into a `package.json`, name things with full JS power.
 
 ### Why ?
 
-Sometimes renaming files with regex is not handy.
+Sometimes renaming files with regex only is not handy.
 Also some projects may need very specific naming functions and having to push a package to npm only for a specific project is cumbersome.
 
 ### Installation
@@ -33,9 +34,9 @@ function rename ( filePath, fileName, bundle, bundleGraph, config, options ) {
     // fileName is default fileName, or previous function transformed fileName
     //      ex : my-file.5c13ab.css
     // bundle -> @see Parcel's Bundle object
-    // bundleGraph -> @sse Parcel's BundleGraph object
-    // config -> @sse Parcel's config object
-    // options -> @sse Parcel's options object
+    // bundleGraph -> @see Parcel's BundleGraph object
+    // config -> @see Parcel's config object
+    // options -> @see Parcel's options object
     
     // Return a new name
     if ( bundle.type == 'jpg' )

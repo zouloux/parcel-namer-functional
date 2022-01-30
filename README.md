@@ -63,7 +63,7 @@ You can find help about how to rename here :
   "parcel-namer-functional" : [
     {
       "type" : "require",
-      "module" : "renamer.js", // relative to package.json
+      "file" : "renamer.js", // relative to package.json
       "function" : "pleaseRename"
     }
   ]
@@ -125,7 +125,7 @@ To fail silently, add this property to `"require"` or `"global"` in `package.jso
     },
     {
       "type" : "require",
-      "module" : "thisFileDoesNotExists.js",
+      "file" : "thisFileDoesNotExists.js",
       "function" : "thisFunctionDoesNotExists",
       "fail" : false
     }

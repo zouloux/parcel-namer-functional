@@ -154,7 +154,7 @@ exports.default = new Plugin.Namer({
 			const functionsToCall = (Array.isArray(functionToCall) ? functionToCall : [functionToCall])
 			functionsToCall.map( f => {
 				// Rename and pass previous result or defaultFileName
-				const name = f && f( filePath, selectedFileName ?? defaultFileName, bundle, bundleGraph, config, options )
+				const name = f && f( filePath, (selectedFileName ? selectedFileName : defaultFileName), bundle, bundleGraph, config, options )
 				// Keep this result if we go one
 				if ( name ) selectedFileName = name
 			})

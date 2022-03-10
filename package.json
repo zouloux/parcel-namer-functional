@@ -1,6 +1,6 @@
 {
 	"name": "parcel-namer-functional",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"license": "MIT",
 	"author": "Alexis Bouhet",
 	"description": "A Parcel namer plugin with a functional way to give name to generated files.",
